@@ -7,7 +7,7 @@
     </article>
     <aside class="col-sm-4"  style="margin: 50 px">
     <h1>contactez nous</h1>
-    <form action="/contact" method="POST">
+    <form action="{{ route('contact.store') }}" method="POST">
         @csrf
         <div class="form-group">
         <input type="text" class="form-control @error('name') is-invalid @enderror" 

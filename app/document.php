@@ -15,4 +15,8 @@ class document extends Model
     public function sousdomaine(){
         return $this->belongsTo('App\sousdomaine');
     }
+
+    public function commentaire(){
+        return $this->morphMany('App\commentaire', 'document')->latest();
+    }
 }

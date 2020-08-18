@@ -1,7 +1,11 @@
 @component('mail::message')
-# Introduction
+# Salut
 
-The body of your message.
+Vous avez reçu un email de la part de {{ $data['name'] }} ({{ $data['email'] }})
+
+Message:
+
+{{ $data['message'] }}
 
 @component('mail::button', ['url' => ''])
 Button Text

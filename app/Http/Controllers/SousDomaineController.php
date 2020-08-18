@@ -50,7 +50,7 @@ class SousDomaineController extends Controller
             'domaine_id'=>'required|integer'
         ]);
         $sousdomaine->update($data);
-        return redirect('/sousdomaine')->with('message', 'Modification effectuée avec succès.');;
+        return redirect('/sousdomaine')->with('message', 'Modification effectuée avec succès.');
     }
 
     public function destroy(sousdomaine $sousdomaine){

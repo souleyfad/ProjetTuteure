@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Commentaire;
+use App\commentaire;
+use App\document;
 use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
@@ -33,18 +34,26 @@ class CommentaireController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(document $document)
     {
-        //
+        request()->validate([
+            'contenu'=>'required|min:5'
+        ]);
+        $commentaire = new commentaire();
+        $commentaire->contenu= request('contenu');
+        $commentaire->user_id= auth()->user()->id;
+
+        $document->commentaire()->save($commentaire);
+        return redirect()->route('document.show', $document);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Commentaire  $commentaire
+     * @param  \App\commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function show(Commentaire $commentaire)
+    public function show(commentaire $commentaire)
     {
         //
     }
@@ -52,10 +61,10 @@ class CommentaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Commentaire  $commentaire
+     * @param  \App\commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function edit(Commentaire $commentaire)
+    public function edit(commentaire $commentaire)
     {
         //
     }
@@ -64,10 +73,10 @@ class CommentaireController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Commentaire  $commentaire
+     * @param  \App\commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(Request $request, commentaire $commentaire)
     {
         //
     }
@@ -75,10 +84,10 @@ class CommentaireController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Commentaire  $commentaire
+     * @param  \App\commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commentaire $commentaire)
+    public function destroy(commentaire $commentaire)
     {
         //
     }

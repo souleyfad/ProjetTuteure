@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::view('/','welcome');
-Route::get('contact','ContactController@create');
-Route::post('contact','ContactController@store');
+Route::get('contact','ContactController@create')->name('contact.create');
+Route::post('contact','ContactController@store')->name('contact.store');
 
 /** document routes */
 Route::get('/document','DocumentController@index')->middleware('auth:web,admin');
 Route::get('/document/create','DocumentController@create')->middleware('auth:admin');
 Route::post('/document','DocumentController@store');
-Route::get('/document/{document}','DocumentController@show');
+Route::get('/document/{document}','DocumentController@show')->name('document.show');
 Route::get('/document/{document}/edit','DocumentController@edit');
 Route::patch('/document/{document}','DocumentController@update');
 Route::delete('/document/{document}','DocumentController@destroy');
@@ -44,6 +44,9 @@ Route::get('/sousdomaine/{sousdomaine}/edit','SousDomaineController@edit');
 Route::patch('/sousdomaine/{sousdomaine}','SousDomaineController@update');
 Route::delete('/sousdomaine/{sousdomaine}','SousDomaineController@destroy');
 Route::post('/sousdomaine','SousDomaineController@store');
+
+/**commentaire routes */
+Route::post('/commentaire/{document}', 'CommentaireController@store')->name('commentaire.store');
 
 Auth::routes();
 

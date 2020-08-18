@@ -25,7 +25,7 @@ class DomaineController extends Controller
             'libelle'=>'required|min:5'
         ]);
         domaine::create($data);
-        return redirect('/domaine')->with('message', 'Ajout effectuée avec succès.');;
+        return redirect('/domaine')->with('message', 'Ajout effectuée avec succès.');
     }
 
     public function create(){
@@ -42,12 +42,12 @@ class DomaineController extends Controller
             'libelle'=>'required|min:5'
         ]);
         $domaine->update($data);
-        return redirect('/domaine')->with('message', 'Modification effectuée avec succès.');;
+        return redirect('/domaine')->with('message', 'Modification effectuée avec succès.');
     }
 
     public function destroy(domaine $domaine){
         $domaine->delete();
-        return redirect('domaine')->with('message', 'Suppression effectuée avec succès.');;      
+        return redirect('domaine')->with('message', 'Suppression effectuée avec succès.');      
     }
 
 }
